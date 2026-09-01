@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PLANIFY - Tu agenda personal</title>
+
+  <!-- Iconos (FontAwesome) y tipografias (Google Fonts) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Nuestra hoja de estilos -->
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+  <main>
+    <div class="pantalla-acceso">
+
+      <!-- Nubes decorativas dibujadas con SVG -->
+      <svg class="nube nube-1" viewBox="0 0 200 200" aria-hidden="true">
+        <circle cx="70" cy="70" r="60" fill="var(--vino)" opacity=".5"/>
+        <circle cx="120" cy="90" r="50" fill="var(--violeta-oscuro)" opacity=".6"/>
+        <circle cx="60" cy="120" r="45" fill="var(--ciruela)" opacity=".4"/>
+      </svg>
+      <svg class="nube nube-2" viewBox="0 0 200 200" aria-hidden="true">
+        <circle cx="90" cy="90" r="58" fill="var(--violeta)" opacity=".5"/>
+        <circle cx="130" cy="120" r="48" fill="var(--ciruela)" opacity=".45"/>
+      </svg>
+
+      <h1 class="titulo-portada">PLANIFY</h1>
+      <p class="subtitulo-portada">Tu agenda personal</p>
+
+      <div class="adorno-linea"></div>
+
+      <div style="display:flex; gap:16px; flex-wrap:wrap; justify-content:center;">
+        <a class="boton boton-vino" href="registro.html" style="min-width:190px;">
+          <i class="fa-solid fa-user-plus"></i> Registrarse
+        </a>
+        <a class="boton boton-violeta" href="iniciar-sesion.html" style="min-width:190px;">
+          <i class="fa-solid fa-right-to-bracket"></i> Iniciar sesion
+        </a>
+      </div>
+
+      <p style="margin-top:34px; font-size:13px; color:var(--texto-suave);">
+        Organiza tu ano 2026: calendario, notas, recordatorios y pendientes en un solo lugar.
+      </p>
+    </div>
+  </main>
+
+  <footer class="pie">PLANIFY 2026 &middot; Proyecto de Modelos y Sistemas</footer>
+
+  <script src="js/comun.js"></script>
+</body>
+</html>
