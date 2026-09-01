@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PLANIFY - Iniciar sesion</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+  <main>
+    <div class="pantalla-acceso">
+      <a href="index.html" style="align-self:flex-start; color:var(--texto-suave); font-size:14px; margin-bottom:10px;">
+        <i class="fa-solid fa-arrow-left"></i> Volver
+      </a>
+
+      <h1 class="titulo-portada" style="font-size:46px;">PLANIFY</h1>
+      <p class="subtitulo-portada">Bienvenido de vuelta</p>
+
+      <form class="tarjeta-formulario" id="formLogin" novalidate>
+        <h2>Inicio de sesion</h2>
+
+        <div class="campo">
+          <label for="correo">Correo electronico:</label>
+          <div class="campo-icono">
+            <i class="fa-solid fa-envelope"></i>
+            <input type="email" id="correo" name="correo" placeholder="ejemplo@correo.com" required>
+          </div>
+        </div>
+
+        <div class="campo">
+          <label for="clave">Contrasena:</label>
+          <div class="campo-icono">
+            <i class="fa-solid fa-key"></i>
+            <input type="password" id="clave" name="clave" placeholder="Tu contrasena" required>
+          </div>
+        </div>
+
+        <p class="error-formulario" id="errorLogin" role="alert"></p>
+
+        <button type="submit" class="boton boton-violeta boton-ancho">Iniciar sesion</button>
+
+        <p style="margin-top:12px; font-size:13px; text-align:center;">
+          <a href="#" style="color:var(--texto-suave);">Olvidaste tu contrasena?</a>
+        </p>
+
+        <!-- ===== SECCION DE PAGO DEL INICIO DE SESION =====
+             Muestra como viene tu plan antes de entrar: al dia,
+             por vencer o vencido. El texto lo escribe acceso.js. -->
+        <div class="pago-acceso" id="pagoLogin">
+          <h3><i class="fa-solid fa-credit-card"></i> Estado de tu plan</h3>
+          <p class="pago-acceso-texto" id="estadoLoginTexto">
+            Cuando entres te mostramos como viene tu plan.
+          </p>
+          <p class="pastilla-estado" id="estadoLoginPastilla" hidden></p>
+
+          <a class="boton boton-vino boton-ancho" href="pago-actualizar.html" id="btnPagoLogin" hidden>
+            <i class="fa-solid fa-rotate"></i> Renovar mi plan
+          </a>
+
+          <p class="pago-acceso-nota">
+            <i class="fa-solid fa-lock"></i> Mensual $500 &middot; Anual $5.000. Pago simulado del proyecto.
+          </p>
+        </div>
+
+        <div class="separador"><span>Inicia sesion con</span></div>
+
+        <button type="button" class="boton boton-ancho" id="btnGoogle">
+          <i class="fa-brands fa-google" style="color:#db4437; font-size:17px;"></i> Google
+        </button>
+
+        <p style="margin-top:18px; font-size:14px; text-align:center;">
+          No tienes cuenta?
+          <a href="registro.html" style="color:var(--ciruela); font-weight:700;">Registrarse</a>
+        </p>
+      </form>
+    </div>
+  </main>
+
+  <footer class="pie">PLANIFY 2026</footer>
+
+  <script src="js/comun.js"></script>
+  <script src="js/acceso.js"></script>
+</body>
+</html>
