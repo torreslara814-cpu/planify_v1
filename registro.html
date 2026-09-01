@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PLANIFY - Registro</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+  <main>
+    <div class="pantalla-acceso">
+      <a href="index.html" style="align-self:flex-start; color:var(--texto-suave); font-size:14px; margin-bottom:10px;">
+        <i class="fa-solid fa-arrow-left"></i> Volver
+      </a>
+
+      <h1 class="titulo-portada" style="font-size:46px;">PLANIFY</h1>
+      <p class="subtitulo-portada">Crea tu cuenta</p>
+
+      <!-- FORM: agrupa los campos que se envian juntos -->
+      <form class="tarjeta-formulario" id="formRegistro" novalidate>
+        <h2>Registro</h2>
+
+        <div class="campo">
+          <label for="nombre">Nombre y apellido:</label>
+          <div class="campo-icono">
+            <i class="fa-solid fa-user"></i>
+            <input type="text" id="nombre" name="nombre" placeholder="Tu nombre completo" required>
+          </div>
+        </div>
+
+        <div class="campo">
+          <label for="correo">Correo electronico:</label>
+          <div class="campo-icono">
+            <i class="fa-solid fa-envelope"></i>
+            <input type="email" id="correo" name="correo" placeholder="ejemplo@correo.com" required>
+          </div>
+        </div>
+
+        <div class="campo">
+          <label for="clave">Contrasena:</label>
+          <div class="campo-icono">
+            <i class="fa-solid fa-key"></i>
+            <input type="password" id="clave" name="clave" placeholder="Minimo 6 caracteres" required minlength="6">
+          </div>
+        </div>
+
+        <p class="error-formulario" id="errorRegistro" role="alert"></p>
+
+        <button type="submit" class="boton boton-vino boton-ancho">Registrate</button>
+
+        <!-- ===== SECCION DE PAGO DEL REGISTRO =====
+             Aca la persona ve el precio ANTES de registrarse y
+             elige el plan. Lo que toca queda guardado y aparece
+             ya marcado en la pantalla del pago.               -->
+        <div class="pago-acceso" id="pagoRegistro">
+          <h3><i class="fa-solid fa-credit-card"></i> Tu plan de Planify</h3>
+          <p class="pago-acceso-texto">
+            Elegi como queres pagar. Despues de registrarte te pedimos los datos de la tarjeta.
+          </p>
+
+          <div class="mini-planes">
+            <button type="button" class="mini-plan elegido" data-plan="mensual">
+              <strong>Mensual</strong>
+              <span class="mini-precio">$500</span>
+              <small>por mes</small>
+            </button>
+            <button type="button" class="mini-plan" data-plan="anual">
+              <span class="mini-cinta">2 meses gratis</span>
+              <strong>Anual</strong>
+              <span class="mini-precio">$5.000</span>
+              <small>por ano</small>
+            </button>
+          </div>
+
+          <p class="pago-acceso-nota">
+            <i class="fa-solid fa-lock"></i> Pago simulado para el proyecto de Modelos y Sistemas.
+          </p>
+        </div>
+
+        <p style="margin-top:18px; font-size:14px; text-align:center;">
+          Ya tienes cuenta?
+          <a href="iniciar-sesion.html" style="color:var(--ciruela); font-weight:700;">Iniciar sesion</a>
+        </p>
+      </form>
+    </div>
+  </main>
+
+  <footer class="pie">PLANIFY 2026</footer>
+
+  <script src="js/comun.js"></script>
+  <script src="js/acceso.js"></script>
+</body>
+</html>
