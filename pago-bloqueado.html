@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PLANIFY - Tu plan vencio</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+  <!-- Barra simple: aca NO va el menu, porque el sitio esta bloqueado
+       hasta que la persona renueve el pago. -->
+  <header class="barra-superior">
+    <a class="logo" href="index.html">
+      <svg width="30" height="30" viewBox="0 0 100 100" aria-hidden="true">
+        <circle cx="55" cy="55" r="38" fill="var(--ciruela)" opacity=".65"/>
+        <circle cx="38" cy="42" r="30" fill="var(--violeta)" opacity=".8"/>
+      </svg>
+      <span>PLANIFY</span>
+    </a>
+  </header>
+
+  <main class="zona-bloqueo">
+    <div class="tarjeta-bloqueo" role="alertdialog" aria-labelledby="tituloBloqueo">
+
+      <div class="candado-bloqueo"><i class="fa-solid fa-lock"></i></div>
+
+      <h2 id="tituloBloqueo">Tu plan vencio</h2>
+      <p class="texto-bloqueo" id="textoBloqueo">
+        Para seguir usando Planify necesitas renovar tu pago.
+      </p>
+
+      <!-- Datos de la cuenta, para que se entienda por que esta bloqueada -->
+      <div class="datos-bloqueo">
+        <p><i class="fa-solid fa-user"></i> <strong id="bloqueoNombre">Estudiante</strong></p>
+        <p><i class="fa-regular fa-calendar-xmark"></i> Vencio el <strong id="bloqueoVence">-</strong></p>
+        <p><i class="fa-solid fa-credit-card"></i> <strong id="bloqueoPlan">Plan Mensual</strong></p>
+      </div>
+
+      <div class="botones-bloqueo">
+        <button class="boton boton-vino" id="btnPagarAhora">
+          <i class="fa-solid fa-rotate-right"></i> Renovar y desbloquear
+        </button>
+        <a class="boton boton-violeta" href="pago-actualizar.html">
+          <i class="fa-solid fa-list"></i> Ver planes y precios
+        </a>
+      </div>
+
+      <p class="salida-bloqueo">
+        <a href="sesion-cerrada.html" data-accion="cerrar-sesion">Cerrar sesion</a>
+      </p>
+    </div>
+  </main>
+
+  <footer class="pie">PLANIFY 2026 &middot; Proyecto de Modelos y Sistemas</footer>
+
+  <script src="js/comun.js"></script>
+  <script src="js/pago.js"></script>
+</body>
+</html>
