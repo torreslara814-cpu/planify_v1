@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PLANIFY - Primer pago</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+  <!-- ===== MENU LATERAL (se abre con el boton hamburguesa) ===== -->
+  <nav class="menu-lateral" id="menuLateral" aria-label="Menu lateral">
+    <h3>PLANIFY</h3>
+    <a href="panel.html"><i class="fa-solid fa-house"></i> Inicio</a>
+    <a href="calendario-anual.html"><i class="fa-regular fa-calendar"></i> Calendario anual</a>
+    <a href="calendario-mensual.html"><i class="fa-solid fa-calendar-days"></i> Planificacion mensual</a>
+    <a href="semanal.html"><i class="fa-solid fa-calendar-week"></i> Planificacion semanal</a>
+    <a href="notas.html"><i class="fa-regular fa-note-sticky"></i> Notas</a>
+    <a href="gestor-notas.html"><i class="fa-solid fa-folder-open"></i> Gestor de notas</a>
+    <a href="recordatorios.html"><i class="fa-regular fa-clock"></i> Recordatorios</a>
+    <a href="pendientes.html"><i class="fa-solid fa-list-check"></i> Pendientes</a>
+    <a href="vision-board.html"><i class="fa-solid fa-star"></i> Vision Board</a>
+    <a href="vision-detalle.html"><i class="fa-solid fa-wand-magic-sparkles"></i> Vision detallado</a>
+    <a href="compartir.html"><i class="fa-solid fa-user-group"></i> Compartidos</a>
+    <a href="papelera.html"><i class="fa-solid fa-trash"></i> Papelera</a>
+    <a href="pago-actualizar.html"><i class="fa-solid fa-credit-card"></i> Actualizar pago</a>
+    <a href="perfil.html"><i class="fa-solid fa-user"></i> Perfil</a>
+    <a href="ajustes.html"><i class="fa-solid fa-palette"></i> Ajustes</a>
+    <a href="ajustes.html#paleta"><i class="fa-solid fa-fill-drip"></i> Paleta de color</a>
+    <a href="sesion-cerrada.html" data-accion="cerrar-sesion"><i class="fa-solid fa-right-from-bracket"></i> Cerrar sesion</a>
+  </nav>
+  <div class="fondo-oscuro" id="fondoMenu"></div>
+
+  <!-- ===== BARRA SUPERIOR ===== -->
+  <header class="barra-superior">
+    <button class="boton-menu" id="btnMenu" aria-label="Abrir menu">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+
+    <a class="logo" href="index.html">
+      <svg width="30" height="30" viewBox="0 0 100 100" aria-hidden="true">
+        <circle cx="55" cy="55" r="38" fill="var(--ciruela)" opacity=".65"/>
+        <circle cx="38" cy="42" r="30" fill="var(--violeta)" opacity=".8"/>
+      </svg>
+      <span>PLANIFY</span>
+    </a>
+  </header>
+
+  <main>
+    <!-- ===== LOS TRES PASOS DEL REGISTRO ===== -->
+    <ol class="pasos-pago">
+      <li class="paso listo"><span>1</span> Tus datos</li>
+      <li class="paso activo"><span>2</span> Elegi tu plan</li>
+      <li class="paso"><span>3</span> Listo</li>
+    </ol>
+
+    <div class="encabezado-seccion">
+      <h2><i class="fa-solid fa-credit-card"></i> <span id="saludoPago">Ya casi! Elegi tu plan.</span></h2>
+    </div>
+
+    <form class="caja-pago" id="formPagoRegistro" novalidate>
+
+      <!-- ===== LOS DOS PLANES ===== -->
+      <div class="grilla-planes">
+        <div class="tarjeta-plan elegido" data-plan="mensual" tabindex="0">
+          <h3>Plan Mensual</h3>
+          <p class="precio-plan">$500 <small>por mes</small></p>
+          <ul>
+            <li><i class="fa-solid fa-check"></i> Todas las secciones</li>
+            <li><i class="fa-solid fa-check"></i> Cancelas cuando quieras</li>
+            <li><i class="fa-solid fa-check"></i> Ideal para probar</li>
+          </ul>
+        </div>
+
+        <div class="tarjeta-plan" data-plan="anual" tabindex="0">
+          <span class="cinta-plan">Ahorras 2 meses</span>
+          <h3>Plan Anual</h3>
+          <p class="precio-plan">$5.000 <small>por ano</small></p>
+          <ul>
+            <li><i class="fa-solid fa-check"></i> Todas las secciones</li>
+            <li><i class="fa-solid fa-check"></i> Un solo pago al ano</li>
+            <li><i class="fa-solid fa-check"></i> El mas elegido</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ===== DATOS DE LA TARJETA ===== -->
+      <h3 class="titulo-bloque"><i class="fa-regular fa-credit-card"></i> Datos de tu tarjeta</h3>
+
+      <label for="titular">Nombre y apellido del titular</label>
+      <input id="titular" placeholder="Ruth Gonzalez" autocomplete="cc-name">
+
+      <label for="numeroTarjeta">Numero de la tarjeta</label>
+      <input id="numeroTarjeta" inputmode="numeric" placeholder="1234 5678 9012 4271" autocomplete="cc-number">
+
+      <div class="fila-doble">
+        <div>
+          <label for="venceTarjeta">Vence</label>
+          <input id="venceTarjeta" inputmode="numeric" placeholder="08/27" autocomplete="cc-exp">
+        </div>
+        <div>
+          <label for="codigoTarjeta">Codigo de seguridad</label>
+          <input id="codigoTarjeta" inputmode="numeric" placeholder="123" autocomplete="cc-csc">
+        </div>
+      </div>
+
+      <p class="resumen-plan" id="resumenPlan">Plan Mensual - $500 por mes</p>
+      <p class="mensaje-error" id="errorPago" role="alert"></p>
+
+      <button class="boton boton-vino ancho-total" type="submit">
+        <i class="fa-solid fa-lock"></i> Pagar y Crear mi cuenta
+      </button>
+
+      <p class="texto-seguro"><i class="fa-solid fa-shield-halved"></i> Pago seguro</p>
+    </form>
+  </main>
+
+  <footer class="pie">PLANIFY 2026 &middot; Proyecto de Modelos y Sistemas</footer>
+
+  <script src="js/comun.js"></script>
+  <script src="js/pago.js"></script>
+</body>
+</html>
