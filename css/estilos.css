@@ -1,0 +1,1686 @@
+/* =========================================================
+   PLANIFY - Hoja de estilos principal
+   Aqui vive TODO el diseno: colores, tipografias y formas.
+   Si queres cambiar el look de la pagina, se cambia aca.
+   ========================================================= */
+
+/* --- 1. VARIABLES DE COLOR ---------------------------------
+   Son "cajitas" con un color adentro. Se usan con var(--nombre).
+   Cambiando una sola linea aca, cambia toda la pagina.        */
+:root {
+  --vino: #9e2a47;
+  --vino-oscuro: #7b1f37;
+  --ciruela: #a33b62;
+  --violeta: #61527e;
+  --violeta-oscuro: #473863;
+  --lavanda: #dcdcf8;
+  --fondo: #f2f1fb;
+  --tarjeta: #ffffff;
+  --texto: #2b2b33;
+  --texto-suave: #6b6b7b;
+  --amarillo: #fcd307;
+  --peligro: #d9534f;
+  --borde: #e3e1f0;
+  --sombra: 0 8px 20px rgba(60, 40, 80, .10);
+  --redondeo: 18px;
+  --serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --sans: 'Poppins', system-ui, sans-serif;
+}
+
+/* Modo oscuro: se activa agregando la clase .modo-oscuro al body */
+body.modo-oscuro {
+  --fondo: #191825;
+  --tarjeta: #241f33;
+  --texto: #ece9f5;
+  --texto-suave: #a9a4c0;
+  --lavanda: #2e2743;
+  --borde: #3a3352;
+  --sombra: 0 8px 20px rgba(0, 0, 0, .45);
+}
+
+/* --- 2. RESET Y BASE -------------------------------------- */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--sans);
+  background: var(--fondo);
+  color: var(--texto);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  transition: background .3s, color .3s;
+}
+
+h1, h2, h3, .titulo-serif { font-family: var(--serif); }
+
+a { color: inherit; text-decoration: none; }
+
+img { max-width: 100%; display: block; }
+
+/* --- 3. BARRA SUPERIOR ------------------------------------ */
+.barra-superior {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 22px;
+  background: var(--tarjeta);
+  border-bottom: 1px solid var(--borde);
+  box-shadow: 0 2px 12px rgba(60, 40, 80, .06);
+}
+
+.boton-menu {
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  color: var(--texto);
+  cursor: pointer;
+  padding: 6px 8px;
+  border-radius: 10px;
+}
+.boton-menu:hover { background: var(--lavanda); }
+
+.logo { display: flex; align-items: center; gap: 10px; }
+.logo span {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--ciruela);
+}
+
+.buscador {
+  flex: 1;
+  max-width: 420px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--lavanda);
+  border-radius: 30px;
+  padding: 9px 16px;
+  color: var(--texto-suave);
+}
+.buscador input {
+  border: none;
+  background: transparent;
+  outline: none;
+  width: 100%;
+  font-family: var(--sans);
+  font-size: 14px;
+  color: var(--texto);
+}
+
+.avatar-mini {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: var(--ciruela);
+  color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  flex: 0 0 auto;
+}
+.avatar-mini:hover { background: var(--vino-oscuro); }
+
+/* Mensaje de error del buscador */
+.aviso-busqueda {
+  margin: 12px auto 0;
+  max-width: 1150px;
+  padding: 12px 18px;
+  border-radius: 12px;
+  background: #ffe9ec;
+  color: #a11430;
+  font-size: 14px;
+  font-weight: 600;
+  border-left: 5px solid var(--peligro);
+}
+body.modo-oscuro .aviso-busqueda { background: #3a1f28; color: #ffb3c0; }
+
+/* El mismo cartel pero en violeta, para avisos que no son errores */
+.aviso-busqueda.es-ok {
+  background: #ecebfb;
+  color: var(--violeta-oscuro);
+  border-left-color: var(--violeta);
+}
+body.modo-oscuro .aviso-busqueda.es-ok { background: #2e2743; color: #cfc7f0; }
+
+/* --- 4. MENU LATERAL (hamburguesa) ------------------------ */
+.menu-lateral {
+  position: fixed;
+  top: 0; left: 0;
+  width: 250px;
+  height: 100%;
+  background: var(--vino);
+  color: #fff;
+  padding: 26px 18px;
+  z-index: 90;
+  transform: translateX(-102%);
+  transition: transform .28s ease;
+  box-shadow: 4px 0 22px rgba(0, 0, 0, .25);
+}
+.menu-lateral.abierto { transform: translateX(0); }
+
+.menu-lateral h3 {
+  font-size: 20px;
+  letter-spacing: 2px;
+  margin-bottom: 22px;
+}
+.menu-lateral a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  font-size: 15px;
+  margin-bottom: 6px;
+}
+.menu-lateral a:hover { background: rgba(255, 255, 255, .18); }
+.menu-lateral a.actual { background: rgba(255, 255, 255, .28); font-weight: 600; }
+
+.fondo-oscuro {
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 10, 30, .45);
+  z-index: 80;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .25s;
+}
+.fondo-oscuro.visible { opacity: 1; visibility: visible; }
+
+/* --- 5. PESTANAS DE NAVEGACION ---------------------------- */
+.pestanas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin: 18px auto 22px;
+  max-width: 1150px;
+  padding: 0 20px;
+}
+.pestana {
+  background: var(--tarjeta);
+  border: 1px solid var(--borde);
+  padding: 9px 18px;
+  border-radius: 22px;
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--violeta-oscuro);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all .2s;
+}
+body.modo-oscuro .pestana { color: var(--texto); }
+.pestana:hover { background: var(--lavanda); }
+.pestana.actual { background: var(--ciruela); color: #fff; border-color: var(--ciruela); }
+
+/* --- 6. CONTENEDOR PRINCIPAL ------------------------------ */
+main {
+  width: 100%;
+  max-width: 1150px;
+  margin: 0 auto 40px;
+  padding: 0 20px;
+  flex: 1;
+}
+
+.encabezado-seccion {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--tarjeta);
+  border: 1px solid var(--borde);
+  padding: 16px 24px;
+  border-radius: 14px;
+  margin-bottom: 22px;
+  box-shadow: var(--sombra);
+}
+.encabezado-seccion h2 { font-size: 24px; color: var(--vino); }
+body.modo-oscuro .encabezado-seccion h2 { color: #f3c6d3; }
+
+/* --- 7. BOTONES ------------------------------------------- */
+.boton {
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 11px 20px;
+  border-radius: 24px;
+  border: 1px solid var(--borde);
+  background: var(--tarjeta);
+  color: var(--texto);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all .2s;
+}
+.boton:hover { transform: translateY(-2px); }
+.boton-vino { background: var(--ciruela); color: #fff; border-color: var(--ciruela); }
+.boton-vino:hover { background: var(--vino-oscuro); border-color: var(--vino-oscuro); }
+.boton-violeta { background: var(--violeta); color: #fff; border-color: var(--violeta); }
+.boton-peligro { background: var(--peligro); color: #fff; border-color: var(--peligro); }
+.boton-ancho { width: 100%; }
+
+/* --- 8. TARJETAS ------------------------------------------ */
+.tarjeta {
+  background: var(--tarjeta);
+  border: 1px solid var(--borde);
+  border-radius: var(--redondeo);
+  padding: 22px;
+  box-shadow: var(--sombra);
+}
+
+.tarjeta-vino {
+  background: var(--ciruela);
+  color: #fff;
+  border: none;
+  border-radius: var(--redondeo);
+  padding: 22px;
+  box-shadow: var(--sombra);
+}
+.tarjeta-vino input,
+.tarjeta-vino textarea { color: #fff; }
+.tarjeta-vino input::placeholder,
+.tarjeta-vino textarea::placeholder { color: rgba(255, 255, 255, .65); }
+
+.titulo-tarjeta {
+  font-family: var(--serif);
+  font-size: 19px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.grilla-panel {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 20px;
+}
+
+.tarjeta-enlace { display: block; transition: transform .2s, box-shadow .2s; }
+.tarjeta-enlace:hover { transform: translateY(-5px); box-shadow: 0 14px 28px rgba(60, 40, 80, .2); }
+
+/* --- 9. PORTADA / LOGIN / REGISTRO ------------------------ */
+.pantalla-acceso {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 78vh;
+  position: relative;
+  text-align: center;
+}
+.nube { position: absolute; z-index: 0; opacity: .5; pointer-events: none; }
+.nube-1 { top: -20px; left: -40px; width: 260px; }
+.nube-2 { bottom: -30px; right: -30px; width: 240px; }
+
+.titulo-portada {
+  font-family: var(--serif);
+  font-size: clamp(44px, 9vw, 78px);
+  letter-spacing: 4px;
+  color: var(--vino);
+  position: relative;
+}
+.subtitulo-portada {
+  font-family: var(--serif);
+  font-size: 20px;
+  font-style: italic;
+  color: var(--texto-suave);
+  margin: 6px 0 34px;
+}
+.adorno-linea {
+  width: 220px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--ciruela), transparent);
+  margin: 26px auto;
+}
+
+.tarjeta-formulario {
+  background: var(--tarjeta);
+  border: 1px solid var(--borde);
+  border-radius: 22px;
+  padding: 32px 28px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: var(--sombra);
+  position: relative;
+  z-index: 1;
+  text-align: left;
+}
+.tarjeta-formulario h2 {
+  text-align: center;
+  color: var(--violeta-oscuro);
+  margin-bottom: 22px;
+}
+body.modo-oscuro .tarjeta-formulario h2 { color: var(--lavanda); }
+
+.campo { margin-bottom: 16px; }
+.campo label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--texto-suave);
+  margin-bottom: 6px;
+}
+.campo-icono {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--lavanda);
+  border-radius: 10px;
+  padding: 11px 14px;
+  color: var(--violeta);
+}
+.campo-icono input {
+  border: none;
+  background: transparent;
+  outline: none;
+  width: 100%;
+  font-family: var(--sans);
+  font-size: 14px;
+  color: var(--texto);
+}
+
+.separador {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 22px 0 16px;
+  color: var(--texto-suave);
+  font-size: 12px;
+}
+.separador::before,
+.separador::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--borde);
+}
+
+.error-formulario {
+  color: var(--peligro);
+  font-size: 13px;
+  font-weight: 600;
+  margin-top: 10px;
+  min-height: 18px;
+}
+
+/* --- 10. CALENDARIOS -------------------------------------- */
+.grilla-anual {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 18px;
+}
+.mes-mini {
+  background: var(--tarjeta);
+  border: 1px solid var(--borde);
+  border-radius: 14px;
+  padding: 14px;
+  box-shadow: var(--sombra);
+}
+.mes-mini h3 {
+  font-size: 15px;
+  text-align: center;
+  color: var(--vino);
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+body.modo-oscuro .mes-mini h3 { color: #f3c6d3; }
+.mes-mini table { width: 100%; border-collapse: collapse; }
+.mes-mini th {
+  font-size: 10px;
+  color: var(--texto-suave);
+  padding-bottom: 4px;
+  font-weight: 600;
+}
+.mes-mini td {
+  text-align: center;
+  font-size: 11px;
+  padding: 3px 0;
+  color: var(--texto);
+}
+.dia-pasado { color: #b9b6c8; text-decoration: line-through; }
+.dia-hoy {
+  background: var(--ciruela);
+  color: #fff !important;
+  border-radius: 50%;
+  font-weight: 700;
+}
+.dia-fin { color: var(--ciruela); font-weight: 600; }
+
+.tabla-mes {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--tarjeta);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: var(--sombra);
+}
+.tabla-mes th {
+  background: var(--violeta);
+  color: #fff;
+  padding: 12px 6px;
+  font-size: 13px;
+  font-family: var(--sans);
+}
+.tabla-mes td {
+  border: 1px solid var(--borde);
+  height: 92px;
+  width: 14.28%;
+  vertical-align: top;
+  padding: 6px;
+  cursor: pointer;
+}
+.tabla-mes td:hover { background: var(--lavanda); }
+.numero-dia { font-size: 13px; font-weight: 700; color: var(--texto-suave); }
+.evento-dia {
+  background: #f1e4ec;
+  color: var(--vino);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 5px;
+  border-radius: 5px;
+  margin-top: 5px;
+  word-break: break-word;
+}
+body.modo-oscuro .evento-dia { background: #46283a; color: #ffc9d8; }
+
+.dos-columnas {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+  align-items: start;
+}
+
+/* --- 11. LISTAS CON ESTRELLAS (objetivos) ----------------- */
+.lista-estrellas { list-style: none; }
+.lista-estrellas li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 0;
+  border-bottom: 1px dashed rgba(255, 255, 255, .35);
+}
+.lista-estrellas i { color: var(--amarillo); }
+.lista-estrellas input {
+  background: transparent;
+  border: none;
+  outline: none;
+  width: 100%;
+  font-family: var(--sans);
+  font-size: 14px;
+}
+
+/* --- 12. PLANIFICADOR SEMANAL ---------------------------- */
+.grilla-semana {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 16px;
+}
+.tarjeta-dia {
+  background: var(--ciruela);
+  color: #fff;
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: var(--sombra);
+}
+.tarjeta-dia h3 {
+  font-size: 17px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.tarjeta-dia.domingo { background: var(--tarjeta); color: var(--ciruela); border: 2px solid var(--ciruela); }
+.tarjeta-dia textarea {
+  width: 100%;
+  min-height: 110px;
+  background: rgba(255, 255, 255, .18);
+  border: none;
+  border-radius: 10px;
+  padding: 10px;
+  resize: vertical;
+  outline: none;
+  font-family: var(--sans);
+  font-size: 13px;
+  color: inherit;
+}
+.tarjeta-dia.domingo textarea { background: var(--lavanda); color: var(--texto); }
+.letras-semana { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; text-align: center; }
+.letra-dia {
+  background: rgba(255, 255, 255, .22);
+  border-radius: 8px;
+  padding: 14px 0;
+  font-weight: 700;
+}
+.letra-dia.domingo { background: #fff; color: var(--ciruela); }
+
+/* --- 13. NOTAS ------------------------------------------- */
+.zona-notas {
+  display: grid;
+  grid-template-columns: 1fr 260px;
+  gap: 20px;
+  align-items: start;
+}
+.editor-nota {
+  background: var(--ciruela);
+  border-radius: 18px;
+  padding: 20px;
+  color: #fff;
+  box-shadow: var(--sombra);
+}
+.titulo-editable {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid rgba(255, 255, 255, .5);
+  color: #fff;
+  font-family: var(--serif);
+  font-size: 24px;
+  padding: 6px 2px 10px;
+  outline: none;
+  margin-bottom: 14px;
+}
+.hoja-nota {
+  width: 100%;
+  min-height: 340px;
+  background: rgba(255, 255, 255, .14);
+  border: none;
+  border-radius: 12px;
+  padding: 16px;
+  color: #fff;
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 30px;
+  resize: vertical;
+  outline: none;
+}
+.barra-herramientas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+  background: rgba(255, 255, 255, .16);
+  padding: 10px;
+  border-radius: 30px;
+  justify-content: center;
+}
+.herramienta {
+  background: transparent;
+  border: none;
+  color: #fff;
+  width: 38px; height: 34px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 14px;
+}
+.herramienta:hover { background: rgba(255, 255, 255, .3); }
+.herramienta.chica { font-size: 11px; }
+.herramienta.grande { font-size: 18px; }
+
+.lista-notas { display: flex; flex-direction: column; gap: 10px; }
+.item-nota {
+  background: var(--tarjeta);
+  border: 1px solid var(--borde);
+  border-left: 5px solid var(--ciruela);
+  border-radius: 12px;
+  padding: 12px 14px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+.item-nota:hover { background: var(--lavanda); }
+.item-nota.seleccionada { background: var(--lavanda); border-left-color: var(--vino-oscuro); }
+.item-nota small { display: block; font-weight: 400; color: var(--texto-suave); }
+.icono-borrar { background: transparent; border: none; color: var(--peligro); cursor: pointer; font-size: 14px; }
+
+/* --- 14. RECORDATORIOS ----------------------------------- */
+.lista-horas { display: flex; flex-direction: column; gap: 10px; }
+.fila-hora {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(255, 255, 255, .16);
+  border-radius: 10px;
+  padding: 10px 14px;
+}
+.fila-hora .hora {
+  font-weight: 700;
+  font-size: 13px;
+  min-width: 74px;
+  opacity: .95;
+}
+.fila-hora input[type="text"] {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-family: var(--sans);
+  font-size: 14px;
+}
+
+/* --- 15. PENDIENTES -------------------------------------- */
+.tabla-pendientes { width: 100%; border-collapse: collapse; }
+.tabla-pendientes th {
+  text-align: left;
+  font-family: var(--sans);
+  font-size: 13px;
+  padding: 10px 8px;
+  border-bottom: 2px solid rgba(255, 255, 255, .35);
+}
+.tabla-pendientes td {
+  padding: 8px;
+  font-size: 13px;
+  border-bottom: 1px solid rgba(255, 255, 255, .18);
+}
+.tabla-pendientes input[type="text"],
+.tabla-pendientes input[type="date"] {
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-family: var(--sans);
+  font-size: 13px;
+  color: inherit;
+}
+.tabla-pendientes input[type="checkbox"] { width: 18px; height: 18px; accent-color: var(--amarillo); }
+.hecho input[type="text"] { text-decoration: line-through; opacity: .6; }
+
+/* --- 16. VISION BOARD ------------------------------------ */
+.grilla-vision {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+.casilla-imagen {
+  aspect-ratio: 1 / 1;
+  background: rgba(255, 255, 255, .18);
+  border: 2px dashed rgba(255, 255, 255, .6);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+  font-size: 22px;
+}
+.casilla-imagen img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.casilla-imagen input[type="file"] { display: none; }
+
+.caja-texto-vision {
+  width: 100%;
+  min-height: 90px;
+  background: rgba(255, 255, 255, .16);
+  border: none;
+  border-radius: 12px;
+  padding: 12px;
+  color: #fff;
+  font-family: var(--sans);
+  font-size: 14px;
+  resize: vertical;
+  outline: none;
+}
+
+/* --- 17. PERFIL ----------------------------------------- */
+.contenedor-perfil {
+  max-width: 480px;
+  margin: 10px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.avatar-grande {
+  width: 130px; height: 130px;
+  border-radius: 50%;
+  background: var(--ciruela);
+  border: 5px solid var(--violeta-oscuro);
+  color: #fff;
+  font-size: 58px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 26px;
+}
+.pastilla-perfil {
+  width: 100%;
+  background: var(--ciruela);
+  color: #fff;
+  border-radius: 30px;
+  padding: 14px 24px;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 15px;
+  font-weight: 600;
+}
+.pastilla-perfil input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #fff;
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 600;
+}
+.pastilla-perfil input:disabled { color: #fff; opacity: 1; }
+.fila-botones { display: flex; gap: 14px; width: 100%; margin-top: 12px; flex-wrap: wrap; }
+.fila-botones .boton { flex: 1; min-width: 150px; }
+
+/* --- 18. AJUSTES ---------------------------------------- */
+.grilla-ajustes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+.paleta {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 14px;
+}
+.opcion-color {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+  padding: 0;
+}
+.nombre-color {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 600;
+  color: #fff;
+}
+.muestra-color {
+  width: 48px;
+  height: 48px;
+  border: 3px solid transparent;
+  border-radius: 50%;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, .25);
+  transition: transform .2s;
+}
+.opcion-color:hover .muestra-color { transform: scale(1.1); }
+.muestra-color.elegida { border-color: #fff; transform: scale(1.12); }
+.fila-hex { display: flex; align-items: center; gap: 12px; margin-top: 18px; }
+.fila-hex input[type="color"] {
+  width: 54px; height: 40px;
+  border: none; background: none; cursor: pointer;
+}
+.fila-hex input[type="text"] {
+  flex: 1;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: none;
+  background: rgba(255, 255, 255, .2);
+  color: #fff;
+  font-family: var(--sans);
+  outline: none;
+}
+.interruptor-modo { display: flex; gap: 14px; margin-top: 20px; }
+
+/* --- 19. PAPELERA --------------------------------------- */
+.item-papelera {
+  background: var(--tarjeta);
+  border: 1px solid var(--borde);
+  border-left: 5px solid var(--ciruela);
+  border-radius: 12px;
+  padding: 15px 20px;
+  margin-bottom: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: var(--sombra);
+}
+.item-papelera.vencida { border-left-color: var(--peligro); }
+.aviso-vencida { font-size: 12px; color: var(--peligro); font-weight: 600; margin-top: 5px; }
+.dato-secundario { font-size: 12px; color: var(--texto-suave); margin-top: 5px; }
+.vacio {
+  text-align: center;
+  color: var(--texto-suave);
+  padding: 40px 20px;
+  font-style: italic;
+}
+
+/* --- 20. PIE DE PAGINA ---------------------------------- */
+.pie {
+  text-align: center;
+  padding: 20px;
+  font-size: 12px;
+  color: var(--texto-suave);
+  border-top: 1px solid var(--borde);
+}
+
+/* --- 21. AVISO FLOTANTE (se guardo, etc.) --------------- */
+.aviso-flotante {
+  position: fixed;
+  bottom: 24px; left: 50%;
+  transform: translateX(-50%) translateY(80px);
+  background: var(--violeta-oscuro);
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 30px;
+  font-size: 14px;
+  z-index: 200;
+  opacity: 0;
+  transition: all .3s;
+}
+.aviso-flotante.visible { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* --- 22. GESTOR DE NOTAS (tarjetas + buscador) ---------- */
+.fila-buscar-notas {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.fila-buscar-notas input[type="search"] {
+  flex: 1;
+  min-width: 200px;
+  padding: 12px 16px;
+  border: none;
+  border-radius: 12px;
+  font-family: var(--sans);
+  font-size: 14px;
+  background: #fff;
+  color: var(--texto);
+}
+.fila-buscar-notas .boton { flex: 0 0 auto; }
+
+.mensaje-sistema {
+  padding: 12px 18px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  border-left: 5px solid;
+}
+.mensaje-sistema.es-error {
+  background: rgba(217, 83, 79, .12);
+  border-color: var(--peligro);
+  color: var(--peligro);
+}
+.mensaje-sistema.es-exito {
+  background: rgba(97, 82, 126, .12);
+  border-color: var(--violeta);
+  color: var(--violeta);
+}
+
+.grilla-notas {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 18px;
+}
+.tarjeta-nota-editable {
+  background: var(--tarjeta);
+  border: 1px solid var(--borde);
+  border-top: 5px solid var(--vino);
+  border-radius: var(--redondeo);
+  box-shadow: var(--sombra);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.titulo-nota-editable {
+  font-family: var(--serif);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--vino);
+  border: none;
+  border-bottom: 1px dashed var(--borde);
+  background: transparent;
+  padding: 4px 2px;
+  outline: none;
+}
+.titulo-nota-editable:focus { border-bottom-color: var(--vino); }
+.texto-nota-editable {
+  min-height: 110px;
+  resize: vertical;
+  border: none;
+  background: transparent;
+  font-family: var(--sans);
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--texto);
+  outline: none;
+}
+.acciones-nota {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  border-top: 1px solid var(--borde);
+  padding-top: 10px;
+}
+.acciones-nota .boton { padding: 8px 14px; font-size: 12px; }
+
+/* --- 23. VISION BOARD DETALLADO ------------------------- */
+.grilla-detalle {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+.bloque-detalle { display: flex; flex-direction: column; gap: 12px; }
+.casilla-detalle { min-height: 190px; }
+.fila-nota-vision {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.fila-nota-vision input[type="text"] {
+  flex: 1;
+  min-width: 200px;
+  padding: 12px 16px;
+  border: none;
+  border-radius: 12px;
+  font-family: var(--sans);
+  font-size: 14px;
+  background: #fff;
+  color: var(--texto);
+}
+.fila-nota-vision .boton { flex: 0 0 auto; }
+
+/* --- 25. COMPARTIDOS (compartir con otras personas) ------
+   Fila para escribir un telefono o un gmail, lista de las
+   personas invitadas y la caja del enlace para copiar.      */
+.grilla-compartir {
+  display: grid;
+  grid-template-columns: 1.15fr .85fr;
+  gap: 20px;
+  align-items: start;
+}
+.fila-invitar {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.fila-invitar input[type="text"] {
+  flex: 1;
+  min-width: 200px;
+  padding: 12px 16px;
+  border: none;
+  border-radius: 12px;
+  font-family: var(--sans);
+  font-size: 14px;
+  background: #fff;
+  color: var(--texto);
+}
+.fila-invitar .boton { flex: 0 0 auto; }
+
+.lista-personas { list-style: none; margin-top: 16px; }
+.persona-invitada {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(255, 255, 255, .16);
+  border-radius: 14px;
+  padding: 10px 14px;
+  margin-bottom: 10px;
+}
+.circulo-inicial {
+  width: 38px;
+  height: 38px;
+  flex: 0 0 38px;
+  border-radius: 50%;
+  background: var(--amarillo);
+  color: var(--vino-oscuro);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-family: var(--serif);
+}
+.datos-persona { flex: 1; min-width: 0; }
+.datos-persona strong { font-size: 14px; display: block; word-break: break-all; }
+.datos-persona span { font-size: 12px; opacity: .85; }
+.persona-invitada .icono-borrar { color: #fff; }
+
+.caja-enlace {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+.caja-enlace input {
+  flex: 1;
+  min-width: 180px;
+  padding: 12px 14px;
+  border: none;
+  border-radius: 12px;
+  font-family: var(--sans);
+  font-size: 13px;
+  background: #fff;
+  color: var(--texto);
+}
+.texto-permiso {
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 14px;
+}
+.texto-permiso select {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 10px;
+  font-family: var(--sans);
+  font-size: 13px;
+  background: #fff;
+  color: var(--texto);
+}
+
+/* --- 26. PANTALLA "HAS CERRADO SESION" ------------------- */
+.tarjeta-despedida {
+  background: var(--tarjeta);
+  border-radius: 26px;
+  box-shadow: var(--sombra);
+  padding: 46px 38px;
+  max-width: 470px;
+  margin: 0 auto;
+  text-align: center;
+  border-top: 6px solid var(--vino);
+}
+.tarjeta-despedida h2 {
+  font-size: 28px;
+  color: var(--vino);
+  margin-bottom: 10px;
+}
+.tarjeta-despedida p {
+  font-size: 14px;
+  color: var(--texto-suave);
+  margin-bottom: 26px;
+}
+.circulo-chau {
+  width: 92px;
+  height: 92px;
+  border-radius: 50%;
+  margin: 0 auto 22px;
+  background: var(--lavanda);
+  color: var(--vino);
+  font-size: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* --- 27. CONTROLES DE COLUMNAS Y FILAS ------------------- */
+.controles-tabla {
+  display: flex;
+  gap: 22px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 16px;
+}
+.grupo-control {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  background: rgba(255, 255, 255, .16);
+  border-radius: 14px;
+  padding: 8px 14px;
+  font-size: 13px;
+  font-weight: 600;
+}
+.boton-mas-menos {
+  width: 30px;
+  height: 30px;
+  border: none;
+  border-radius: 50%;
+  background: var(--amarillo);
+  color: var(--vino-oscuro);
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  line-height: 1;
+}
+.boton-mas-menos:hover { background: #ffe14d; }
+.numero-control { min-width: 20px; text-align: center; }
+.tabla-pendientes th input {
+  width: 100%;
+  border: none;
+  background: transparent;
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 13px;
+  color: inherit;
+  text-align: center;
+  outline: none;
+}
+
+/* --- 28. PANEL "+" DEL EDITOR DE NOTAS ------------------- */
+.zona-editor { display: flex; gap: 14px; align-items: flex-start; }
+.zona-editor .editor-nota { flex: 1; min-width: 0; }
+.panel-mas {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  background: var(--tarjeta);
+  border-radius: 18px;
+  box-shadow: var(--sombra);
+  padding: 12px 10px;
+}
+.boton-panel {
+  width: 42px;
+  height: 42px;
+  border: none;
+  border-radius: 12px;
+  background: var(--lavanda);
+  color: var(--violeta-oscuro);
+  font-size: 16px;
+  cursor: pointer;
+}
+.boton-panel:hover { background: var(--violeta); color: #fff; }
+.boton-panel.destacado { background: var(--vino); color: #fff; }
+.boton-panel.destacado:hover { background: var(--vino-oscuro); }
+
+/* --- 24. PANTALLAS CHICAS (celular) --------------------- */
+@media (max-width: 860px) {
+  .dos-columnas, .zona-notas { grid-template-columns: 1fr; }
+  .grilla-detalle { grid-template-columns: 1fr; }
+  .buscador { order: 3; max-width: none; flex-basis: 100%; }
+  .barra-superior { flex-wrap: wrap; }
+  .tabla-mes td { height: 66px; font-size: 11px; }
+  .grilla-vision { grid-template-columns: repeat(2, 1fr); }
+  .grilla-compartir { grid-template-columns: 1fr; }
+  .zona-editor { flex-direction: column; }
+  .panel-mas { flex-direction: row; flex-wrap: wrap; justify-content: center; width: 100%; }
+}
+
+/* =========================================================
+   29. DETALLES QUE FALTABAN
+   ========================================================= */
+
+/* El boton + del panel de notas gira cuando esta abierto */
+.boton-panel.girado {
+  transform: rotate(45deg);
+}
+
+/* Los titulos de las columnas de Pendientes se pueden escribir */
+.tabla-pendientes thead input[type="text"]:focus {
+  outline: none;
+  background: rgba(255, 255, 255, .22);
+}
+
+.tabla-pendientes thead input[type="text"]::placeholder {
+  color: rgba(255, 255, 255, .7);
+}
+
+/* =========================================================
+   30. PANTALLAS DE PAGO (primer pago y renovacion)
+   ========================================================= */
+
+/* --- Los tres pasitos de arriba --- */
+.pasos-pago {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 4px auto 22px;
+  padding: 0;
+}
+
+.pasos-pago .paso {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--texto-suave);
+  background: var(--tarjeta);
+  border: 2px solid var(--borde);
+  border-radius: 999px;
+  padding: 7px 16px;
+}
+
+.pasos-pago .paso span {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--borde);
+  color: var(--texto);
+  font-size: 12px;
+}
+
+.pasos-pago .paso.activo {
+  border-color: var(--vino);
+  color: var(--vino);
+}
+
+.pasos-pago .paso.activo span {
+  background: var(--vino);
+  color: #fff;
+}
+
+.pasos-pago .paso.listo {
+  border-color: var(--violeta);
+  color: var(--violeta);
+}
+
+.pasos-pago .paso.listo span {
+  background: var(--violeta);
+  color: #fff;
+}
+
+/* --- La caja blanca grande donde va todo --- */
+.caja-pago {
+  background: var(--tarjeta);
+  border: 1px solid var(--borde);
+  border-radius: var(--redondeo);
+  box-shadow: var(--sombra);
+  padding: 26px;
+  max-width: 640px;
+  margin: 0 auto 30px;
+}
+
+.caja-pago label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--texto-suave);
+  margin: 14px 0 6px;
+}
+
+.caja-pago input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 2px solid var(--borde);
+  border-radius: 12px;
+  background: var(--fondo);
+  color: var(--texto);
+  font-family: var(--sans);
+  font-size: 15px;
+}
+
+.caja-pago input:focus {
+  outline: none;
+  border-color: var(--ciruela);
+}
+
+.titulo-bloque {
+  font-family: var(--serif);
+  color: var(--vino);
+  font-size: 19px;
+  margin: 26px 0 4px;
+  border-top: 1px solid var(--borde);
+  padding-top: 18px;
+}
+
+/* Dos campos chiquitos uno al lado del otro */
+.fila-doble {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.ancho-total {
+  width: 100%;
+  justify-content: center;
+  margin-top: 18px;
+}
+
+.mensaje-error {
+  color: var(--peligro);
+  font-size: 13px;
+  font-weight: 600;
+  min-height: 18px;
+  margin: 8px 0 0;
+}
+
+.resumen-plan {
+  margin: 20px 0 0;
+  text-align: center;
+  font-weight: 700;
+  color: var(--vino);
+  background: var(--lavanda);
+  border-radius: 12px;
+  padding: 11px;
+}
+
+.texto-seguro {
+  text-align: center;
+  font-size: 12px;
+  color: var(--texto-suave);
+  margin: 14px 0 0;
+}
+
+/* --- Las tarjetas de los planes --- */
+.grilla-planes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 6px;
+}
+
+.tarjeta-plan {
+  position: relative;
+  text-align: left;
+  background: var(--fondo);
+  border: 2px solid var(--borde);
+  border-radius: 16px;
+  padding: 18px;
+  cursor: pointer;
+  font-family: var(--sans);
+  color: var(--texto);
+  transition: transform .15s, border-color .15s;
+}
+
+.tarjeta-plan:hover { transform: translateY(-3px); }
+
+.tarjeta-plan.elegido {
+  border-color: var(--vino);
+  background: var(--lavanda);
+}
+
+.tarjeta-plan h3 {
+  font-family: var(--serif);
+  color: var(--vino);
+  font-size: 18px;
+  margin: 0 0 6px;
+}
+
+.precio-plan {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--violeta-oscuro);
+  margin: 0 0 10px;
+}
+
+.precio-plan small {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--texto-suave);
+}
+
+.tarjeta-plan ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 13px;
+  color: var(--texto-suave);
+}
+
+.tarjeta-plan li { margin-bottom: 5px; }
+.tarjeta-plan li i { color: var(--ciruela); margin-right: 6px; }
+
+.cinta-plan {
+  position: absolute;
+  top: -11px;
+  right: 12px;
+  background: var(--amarillo);
+  color: #4a3b00;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 999px;
+}
+
+/* --- La franja de arriba que dice como esta la cuenta --- */
+.franja-pago {
+  max-width: 640px;
+  margin: 0 auto 16px;
+  border-radius: 14px;
+  padding: 13px;
+  text-align: center;
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.franja-pago.es-vencido   { background: var(--peligro); }
+.franja-pago.es-por-vencer { background: var(--amarillo); color: #4a3b00; }
+.franja-pago.es-al-dia     { background: #2e7d5b; }
+
+.saludo-pago {
+  font-family: var(--serif);
+  color: var(--vino);
+  font-size: 25px;
+  margin: 0 0 6px;
+}
+
+.bajada-pago {
+  color: var(--texto-suave);
+  font-size: 14px;
+  margin: 0 0 20px;
+}
+
+/* --- El resumen con los datos de la cuenta --- */
+.resumen-cuenta {
+  border: 1px solid var(--borde);
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.fila-cuenta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 16px;
+  font-size: 14px;
+  flex-wrap: wrap;
+}
+
+.fila-cuenta:nth-child(odd) { background: var(--fondo); }
+.fila-cuenta span { color: var(--texto-suave); }
+.fila-cuenta span i { color: var(--ciruela); margin-right: 7px; }
+.fila-cuenta strong { color: var(--texto); }
+
+.pastilla-estado {
+  border-radius: 999px;
+  padding: 4px 14px;
+  font-size: 12px;
+  color: #fff;
+}
+
+.pastilla-estado.es-vencido    { background: var(--peligro); }
+.pastilla-estado.es-por-vencer { background: var(--amarillo); color: #4a3b00; }
+.pastilla-estado.es-al-dia     { background: #2e7d5b; }
+
+/* --- Dos botones lado a lado --- */
+.fila-botones {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.fila-botones .boton { flex: 1 1 190px; }
+
+/* =========================================================
+   PANTALLA DE BLOQUEO (pago-bloqueado.html)
+   Aparece cuando el plan vencio y tapa todo el sitio.
+   ========================================================= */
+.zona-bloqueo {
+  min-height: 74vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 18px;
+}
+
+.tarjeta-bloqueo {
+  background: var(--tarjeta);
+  border: 1px solid var(--borde);
+  border-top: 6px solid var(--peligro);
+  border-radius: 22px;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, .12);
+  padding: 34px 30px;
+  max-width: 470px;
+  width: 100%;
+  text-align: center;
+}
+
+.candado-bloqueo {
+  width: 76px;
+  height: 76px;
+  margin: 0 auto 16px;
+  border-radius: 50%;
+  background: var(--peligro);
+  color: #fff;
+  font-size: 31px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tarjeta-bloqueo h2 {
+  font-family: var(--serif);
+  color: var(--vino);
+  font-size: 27px;
+  margin: 0 0 10px;
+}
+
+.texto-bloqueo {
+  color: var(--texto-suave);
+  font-size: 14px;
+  margin: 0 0 22px;
+  line-height: 1.6;
+}
+
+.datos-bloqueo {
+  background: var(--fondo);
+  border: 1px solid var(--borde);
+  border-radius: 14px;
+  padding: 14px 16px;
+  text-align: left;
+  margin-bottom: 22px;
+}
+
+.datos-bloqueo p {
+  margin: 6px 0;
+  font-size: 14px;
+  color: var(--texto-suave);
+}
+
+.datos-bloqueo i { color: var(--ciruela); margin-right: 8px; }
+.datos-bloqueo strong { color: var(--texto); }
+
+.botones-bloqueo {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+
+.salida-bloqueo { margin: 20px 0 0; font-size: 13px; }
+.salida-bloqueo a { color: var(--texto-suave); }
+
+/* --- Seccion de pago dentro de registro e inicio de sesion ---
+   Es una cajita clara que va abajo del formulario. Sirve para
+   mostrar el precio (registro) o como viene el plan (login). */
+.pago-acceso {
+  margin-top: 20px;
+  padding: 16px;
+  border: 1px dashed var(--borde);
+  border-radius: 16px;
+  background: var(--lavanda);
+  text-align: left;
+}
+
+.pago-acceso h3 {
+  font-family: var(--serif);
+  font-size: 16px;
+  color: var(--vino);
+  margin: 0 0 6px;
+}
+
+.pago-acceso-texto {
+  font-size: 13px;
+  color: var(--texto-suave);
+  margin: 0 0 12px;
+}
+
+.pago-acceso-nota {
+  font-size: 11.5px;
+  color: var(--texto-suave);
+  margin: 12px 0 0;
+  text-align: center;
+}
+
+.pago-acceso .pastilla-estado {
+  display: inline-block;
+  margin: 0 0 12px;
+  font-weight: 600;
+}
+
+/* Los dos planes chiquitos, uno al lado del otro */
+.mini-planes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.mini-plan {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 13px 8px;
+  background: var(--fondo);
+  border: 2px solid var(--borde);
+  border-radius: 14px;
+  cursor: pointer;
+  font-family: var(--sans);
+  color: var(--texto);
+  transition: transform .15s, border-color .15s;
+}
+
+.mini-plan:hover { transform: translateY(-2px); }
+
+.mini-plan.elegido {
+  border-color: var(--vino);
+  background: var(--lavanda);
+}
+
+.mini-plan strong { font-size: 13px; color: var(--vino); }
+.mini-precio { font-size: 20px; font-weight: 700; color: var(--violeta-oscuro); }
+.mini-plan small { font-size: 11px; color: var(--texto-suave); }
+
+.mini-cinta {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--amarillo);
+  color: #4a3b00;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+/* En celular las cosas van una debajo de la otra */
+@media (max-width: 620px) {
+  .grilla-planes { grid-template-columns: 1fr; }
+  .fila-doble { grid-template-columns: 1fr; }
+  .caja-pago { padding: 20px 16px; }
+  .saludo-pago { font-size: 21px; }
+  .tarjeta-bloqueo { padding: 26px 20px; }
+  .mini-planes { grid-template-columns: 1fr; gap: 16px; }
+}
