@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PLANIFY - Compartidos</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+  <!-- ===== MENU LATERAL (se abre con el boton hamburguesa) ===== -->
+  <nav class="menu-lateral" id="menuLateral" aria-label="Menu lateral">
+    <h3>PLANIFY</h3>
+    <a href="panel.html"><i class="fa-solid fa-house"></i> Inicio</a>
+    <a href="calendario-anual.html"><i class="fa-regular fa-calendar"></i> Calendario anual</a>
+    <a href="calendario-mensual.html"><i class="fa-solid fa-calendar-days"></i> Planificacion mensual</a>
+    <a href="semanal.html"><i class="fa-solid fa-calendar-week"></i> Planificacion semanal</a>
+    <a href="notas.html"><i class="fa-regular fa-note-sticky"></i> Notas</a>
+    <a href="gestor-notas.html"><i class="fa-solid fa-folder-open"></i> Gestor de notas</a>
+    <a href="recordatorios.html"><i class="fa-regular fa-clock"></i> Recordatorios</a>
+    <a href="pendientes.html"><i class="fa-solid fa-list-check"></i> Pendientes</a>
+    <a href="vision-board.html"><i class="fa-solid fa-star"></i> Vision Board</a>
+    <a href="vision-detalle.html"><i class="fa-solid fa-wand-magic-sparkles"></i> Vision detallado</a>
+    <a href="compartir.html"><i class="fa-solid fa-user-group"></i> Compartidos</a>
+    <a href="papelera.html"><i class="fa-solid fa-trash"></i> Papelera</a>
+    <a href="pago-actualizar.html"><i class="fa-solid fa-credit-card"></i> Actualizar pago</a>
+    <a href="perfil.html"><i class="fa-solid fa-user"></i> Perfil</a>
+    <a href="ajustes.html"><i class="fa-solid fa-palette"></i> Ajustes</a>
+    <a href="ajustes.html#paleta"><i class="fa-solid fa-fill-drip"></i> Paleta de color</a>
+    <a href="sesion-cerrada.html" data-accion="cerrar-sesion"><i class="fa-solid fa-right-from-bracket"></i> Cerrar sesion</a>
+  </nav>
+  <div class="fondo-oscuro" id="fondoMenu"></div>
+
+  <!-- ===== BARRA SUPERIOR (igual en todas las paginas) ===== -->
+  <header class="barra-superior">
+    <button class="boton-menu" id="btnMenu" aria-label="Abrir menu">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+
+    <a class="logo" href="panel.html">
+      <svg width="30" height="30" viewBox="0 0 100 100" aria-hidden="true">
+        <circle cx="55" cy="55" r="38" fill="var(--ciruela)" opacity=".65"/>
+        <circle cx="38" cy="42" r="30" fill="var(--violeta)" opacity=".8"/>
+      </svg>
+      <span>PLANIFY</span>
+    </a>
+
+    <form class="buscador" id="formBuscador" role="search">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input type="search" id="campoBuscar" placeholder="Buscar una nota..." aria-label="Buscar nota">
+    </form>
+
+    <a class="avatar-mini" href="perfil.html" title="Mi perfil">
+      <i class="fa-solid fa-user"></i>
+    </a>
+  </header>
+
+  <p class="aviso-busqueda" id="avisoBusqueda" hidden></p>
+
+  <!-- ===== PESTANAS DE ACCESO RAPIDO ===== -->
+  <div class="pestanas">
+    <a class="pestana" href="panel.html"><i class="fa-solid fa-table-cells-large"></i> Panel</a>
+    <a class="pestana" href="calendario-anual.html"><i class="fa-regular fa-calendar"></i> Anual</a>
+    <a class="pestana" href="calendario-mensual.html"><i class="fa-solid fa-calendar-days"></i> Mensual</a>
+    <a class="pestana" href="semanal.html"><i class="fa-solid fa-calendar-week"></i> Semanal</a>
+    <a class="pestana" href="notas.html"><i class="fa-regular fa-note-sticky"></i> Notas</a>
+    <a class="pestana" href="gestor-notas.html"><i class="fa-solid fa-folder-open"></i> Gestor</a>
+    <a class="pestana" href="recordatorios.html"><i class="fa-regular fa-clock"></i> Recordatorios</a>
+    <a class="pestana" href="pendientes.html"><i class="fa-solid fa-list-check"></i> Pendientes</a>
+    <a class="pestana" href="vision-board.html"><i class="fa-solid fa-star"></i> Vision Board</a>
+    <a class="pestana" href="vision-detalle.html"><i class="fa-solid fa-wand-magic-sparkles"></i> Vision detallado</a>
+    <a class="pestana" href="compartir.html"><i class="fa-solid fa-user-group"></i> Compartidos</a>
+  </div>
+
+  <main>
+    <div class="encabezado-seccion">
+      <h2><i class="fa-solid fa-user-group"></i> Compartidos</h2>
+      <a class="boton boton-vino" href="panel.html"><i class="fa-solid fa-arrow-left"></i> Volver</a>
+    </div>
+
+    <p style="font-size:13px; color:var(--texto-suave); margin-bottom:16px;">
+      Comparti tu agenda con quien quieras: agrega a la persona por telefono o por gmail,
+      o pasale el enlace.
+    </p>
+
+    <div class="grilla-compartir">
+
+      <!-- Columna izquierda: agregar personas -->
+      <div class="tarjeta-vino">
+        <div class="titulo-tarjeta">Compartir con otros <i class="fa-solid fa-share-nodes"></i></div>
+        <p style="font-size:13px; margin-bottom:12px;">
+          Agregar personas por telefono o gmail.
+        </p>
+
+        <form class="fila-invitar" id="formInvitar">
+          <input type="text" id="campoPersona" placeholder="Ej: 3514567890 o ana@gmail.com" aria-label="Telefono o gmail">
+          <button class="boton boton-ancho" type="submit"><i class="fa-solid fa-user-plus"></i> Agregar</button>
+        </form>
+
+        <p class="texto-permiso">
+          <label for="tipoPermiso">Esta persona podra:</label>
+          <select id="tipoPermiso">
+            <option value="Puede ver">Solo ver</option>
+            <option value="Puede editar">Ver y editar</option>
+          </select>
+        </p>
+
+        <p class="mensaje-sistema" id="mensajeCompartir" hidden></p>
+
+        <ul class="lista-personas" id="listaPersonas"></ul>
+      </div>
+
+      <!-- Columna derecha: enlace y boton Listo -->
+      <div class="tarjeta-vino">
+        <div class="titulo-tarjeta">Obtener enlace <i class="fa-solid fa-link"></i></div>
+        <p style="font-size:13px;">
+          Cualquiera con este enlace puede entrar a tu agenda compartida.
+        </p>
+
+        <div class="caja-enlace">
+          <input type="text" id="campoEnlace" readonly aria-label="Enlace para compartir">
+          <button class="boton boton-ancho" id="btnCopiar"><i class="fa-regular fa-copy"></i> Copiar</button>
+        </div>
+
+        <button class="boton boton-ancho" id="btnGenerarEnlace" style="margin-top:12px;">
+          <i class="fa-solid fa-rotate"></i> Generar enlace nuevo
+        </button>
+
+        <hr style="border:none; border-top:1px solid rgba(255,255,255,.3); margin:24px 0;">
+
+        <button class="boton boton-violeta boton-ancho" id="btnListo">
+          <i class="fa-solid fa-check"></i> Listo
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <footer class="pie">PLANIFY 2026 &middot; Proyecto de Modelos y Sistemas</footer>
+
+  <script src="js/comun.js"></script>
+  <script src="js/compartir.js"></script>
+</body>
+</html>

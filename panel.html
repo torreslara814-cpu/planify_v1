@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PLANIFY - Panel principal</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+  <!-- ===== MENU LATERAL (se abre con el boton hamburguesa) ===== -->
+  <nav class="menu-lateral" id="menuLateral" aria-label="Menu lateral">
+    <h3>PLANIFY</h3>
+    <a href="panel.html"><i class="fa-solid fa-house"></i> Inicio</a>
+    <a href="calendario-anual.html"><i class="fa-regular fa-calendar"></i> Calendario anual</a>
+    <a href="calendario-mensual.html"><i class="fa-solid fa-calendar-days"></i> Planificacion mensual</a>
+    <a href="semanal.html"><i class="fa-solid fa-calendar-week"></i> Planificacion semanal</a>
+    <a href="notas.html"><i class="fa-regular fa-note-sticky"></i> Notas</a>
+    <a href="gestor-notas.html"><i class="fa-solid fa-folder-open"></i> Gestor de notas</a>
+    <a href="recordatorios.html"><i class="fa-regular fa-clock"></i> Recordatorios</a>
+    <a href="pendientes.html"><i class="fa-solid fa-list-check"></i> Pendientes</a>
+    <a href="vision-board.html"><i class="fa-solid fa-star"></i> Vision Board</a>
+    <a href="vision-detalle.html"><i class="fa-solid fa-wand-magic-sparkles"></i> Vision detallado</a>
+    <a href="compartir.html"><i class="fa-solid fa-user-group"></i> Compartidos</a>
+    <a href="papelera.html"><i class="fa-solid fa-trash"></i> Papelera</a>
+    <a href="pago-actualizar.html"><i class="fa-solid fa-credit-card"></i> Actualizar pago</a>
+    <a href="perfil.html"><i class="fa-solid fa-user"></i> Perfil</a>
+    <a href="ajustes.html"><i class="fa-solid fa-palette"></i> Ajustes</a>
+    <a href="ajustes.html#paleta"><i class="fa-solid fa-fill-drip"></i> Paleta de color</a>
+    <a href="sesion-cerrada.html" data-accion="cerrar-sesion"><i class="fa-solid fa-right-from-bracket"></i> Cerrar sesion</a>
+  </nav>
+  <div class="fondo-oscuro" id="fondoMenu"></div>
+
+  <!-- ===== BARRA SUPERIOR (igual en todas las paginas) ===== -->
+  <header class="barra-superior">
+    <button class="boton-menu" id="btnMenu" aria-label="Abrir menu">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+
+    <a class="logo" href="panel.html">
+      <svg width="30" height="30" viewBox="0 0 100 100" aria-hidden="true">
+        <circle cx="55" cy="55" r="38" fill="var(--ciruela)" opacity=".65"/>
+        <circle cx="38" cy="42" r="30" fill="var(--violeta)" opacity=".8"/>
+      </svg>
+      <span>PLANIFY</span>
+    </a>
+
+    <form class="buscador" id="formBuscador" role="search">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input type="search" id="campoBuscar" placeholder="Buscar una nota..." aria-label="Buscar nota">
+    </form>
+
+    <a class="avatar-mini" href="perfil.html" title="Mi perfil">
+      <i class="fa-solid fa-user"></i>
+    </a>
+  </header>
+
+  <p class="aviso-busqueda" id="avisoBusqueda" hidden></p>
+
+  <!-- ===== PESTANAS DE ACCESO RAPIDO ===== -->
+  <div class="pestanas">
+    <a class="pestana" href="panel.html"><i class="fa-solid fa-table-cells-large"></i> Panel</a>
+    <a class="pestana" href="calendario-anual.html"><i class="fa-regular fa-calendar"></i> Anual</a>
+    <a class="pestana" href="calendario-mensual.html"><i class="fa-solid fa-calendar-days"></i> Mensual</a>
+    <a class="pestana" href="semanal.html"><i class="fa-solid fa-calendar-week"></i> Semanal</a>
+    <a class="pestana" href="notas.html"><i class="fa-regular fa-note-sticky"></i> Notas</a>
+    <a class="pestana" href="gestor-notas.html"><i class="fa-solid fa-folder-open"></i> Gestor</a>
+    <a class="pestana" href="recordatorios.html"><i class="fa-regular fa-clock"></i> Recordatorios</a>
+    <a class="pestana" href="pendientes.html"><i class="fa-solid fa-list-check"></i> Pendientes</a>
+    <a class="pestana" href="vision-board.html"><i class="fa-solid fa-star"></i> Vision Board</a>
+    <a class="pestana" href="vision-detalle.html"><i class="fa-solid fa-wand-magic-sparkles"></i> Vision detallado</a>
+    <a class="pestana" href="compartir.html"><i class="fa-solid fa-user-group"></i> Compartidos</a>
+  </div>
+
+  <main>
+    <div class="encabezado-seccion">
+      <h2 id="saludo">BIENVENIDO!</h2>
+      <span style="font-size:14px; color:var(--texto-suave);" id="fechaHoy"></span>
+    </div>
+
+    <div class="grilla-panel">
+
+      <!-- Tarjeta: Calendario -->
+      <a class="tarjeta-vino tarjeta-enlace" href="calendario-anual.html">
+        <div class="titulo-tarjeta">Calendario 2026 <i class="fa-regular fa-calendar"></i></div>
+        <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:9px;" id="mesesMini"></div>
+      </a>
+
+      <!-- Tarjeta: Recordatorios -->
+      <a class="tarjeta-vino tarjeta-enlace" href="recordatorios.html">
+        <div class="titulo-tarjeta">RECORDAR! <i class="fa-regular fa-clock"></i></div>
+        <div class="lista-horas" id="resumenRecordatorios"></div>
+      </a>
+
+      <!-- Tarjeta: Notas -->
+      <a class="tarjeta-vino tarjeta-enlace" href="notas.html">
+        <div class="titulo-tarjeta">Tus notas <i class="fa-regular fa-note-sticky"></i></div>
+        <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:10px;" id="resumenNotas"></div>
+      </a>
+
+      <!-- Tarjeta: Semana -->
+      <a class="tarjeta-vino tarjeta-enlace" href="semanal.html">
+        <div class="titulo-tarjeta">Semanal! <i class="fa-solid fa-calendar-week"></i></div>
+        <div class="letras-semana">
+          <div class="letra-dia">L</div>
+          <div class="letra-dia">M</div>
+          <div class="letra-dia">X</div>
+          <div class="letra-dia">J</div>
+          <div class="letra-dia">V</div>
+          <div class="letra-dia">S</div>
+          <div class="letra-dia domingo">D</div>
+        </div>
+        <p style="margin-top:14px; font-size:13px; opacity:.9;">Organiza cada dia de tu semana.</p>
+      </a>
+
+      <!-- Tarjeta: Vision Board -->
+      <a class="tarjeta-vino tarjeta-enlace" href="vision-board.html">
+        <div class="titulo-tarjeta">Vision Board <i class="fa-solid fa-star" style="color:var(--amarillo);"></i></div>
+        <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:8px;">
+          <div class="casilla-imagen" style="font-size:15px;"><i class="fa-solid fa-image"></i></div>
+          <div class="casilla-imagen" style="font-size:15px;"><i class="fa-solid fa-heart"></i></div>
+          <div class="casilla-imagen" style="font-size:15px;"><i class="fa-solid fa-plane"></i></div>
+        </div>
+        <p style="margin-top:14px; font-size:13px; opacity:.9;">Tus metas del 2026 en imagenes.</p>
+      </a>
+
+      <!-- Tarjeta: Pendientes -->
+      <a class="tarjeta-vino tarjeta-enlace" href="pendientes.html">
+        <div class="titulo-tarjeta">Pendientes <i class="fa-solid fa-list-check"></i></div>
+        <table class="tabla-pendientes">
+          <thead>
+            <tr><th>Tarea</th><th>Materia</th><th style="text-align:center;">Lista</th></tr>
+          </thead>
+          <tbody id="resumenPendientes"></tbody>
+        </table>
+      </a>
+    </div>
+  </main>
+
+  <footer class="pie">PLANIFY 2026 &middot; Proyecto de Modelos y Sistemas</footer>
+
+  <script src="js/comun.js"></script>
+  <script src="js/panel.js"></script>
+</body>
+</html>
