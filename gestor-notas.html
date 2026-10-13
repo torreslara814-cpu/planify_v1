@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PLANIFY - Gestor de notas</title>
+  <title>PLANIFY - Papelera</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/estilos.css">
@@ -76,29 +76,32 @@
 
   <main>
     <div class="encabezado-seccion">
-      <h2><i class="fa-solid fa-folder-open"></i> Gestor de notas</h2>
+      <h2><i class="fa-solid fa-trash"></i> Papelera</h2>
       <div style="display:flex; gap:10px; flex-wrap:wrap;">
-        <button class="boton boton-violeta" id="btnAgregarNota"><i class="fa-solid fa-plus"></i> Agregar nota</button>
-        <a class="boton" href="notas.html"><i class="fa-regular fa-note-sticky"></i> Editor de notas</a>
+        <button class="boton boton-peligro" id="btnVaciar"><i class="fa-solid fa-broom"></i> Vaciar papelera</button>
         <a class="boton boton-vino" href="panel.html"><i class="fa-solid fa-arrow-left"></i> Volver</a>
       </div>
     </div>
 
+    <p style="font-size:13px; color:var(--texto-suave); margin-bottom:16px;">
+      Las notas se guardan aqui 15 dias. Pasado ese plazo ya no se pueden restaurar.
+    </p>
+
     <div class="tarjeta-vino" style="margin-bottom:20px;">
-      <div class="titulo-tarjeta">Buscar una nota</div>
+      <div class="titulo-tarjeta">Buscar una nota borrada</div>
       <p style="font-size:13px; margin-bottom:10px;">
-        Escribe el titulo o una palabra de la nota y toca Buscar.
+        Escribi el nombre de la nota para saber si todavia se puede recuperar.
       </p>
-      <form class="fila-buscar-notas" id="formBuscarNota">
-        <input type="search" id="campoBuscarNota" placeholder="Ej: prueba de matematica" aria-label="Buscar nota">
+      <form class="fila-buscar-notas" id="formBuscarPapelera">
+        <input type="search" id="campoBuscarPapelera" placeholder="Ej: *Nota 25" aria-label="Buscar nota borrada">
         <button class="boton boton-ancho" type="submit"><i class="fa-solid fa-magnifying-glass"></i> Buscar</button>
-        <button class="boton boton-ancho" type="button" id="btnVerTodas"><i class="fa-solid fa-list"></i> Ver todas</button>
+        <button class="boton boton-ancho" type="button" id="btnVerTodasPapelera"><i class="fa-solid fa-list"></i> Ver todas</button>
       </form>
     </div>
 
-    <p class="mensaje-sistema" id="mensajeSistema" hidden></p>
+    <p class="mensaje-sistema" id="mensajePapelera" hidden></p>
 
-    <div class="grilla-notas" id="grillaNotas"></div>
+    <div id="listaPapelera"></div>
   </main>
 
   <footer class="pie">PLANIFY 2026 &middot; Proyecto de Modelos y Sistemas</footer>
